@@ -605,3 +605,36 @@ function bubblyCloud() {
 }
 
 register(bubblyCloud, "Bubbly Cloud", "G4m3M4ni4c");
+
+function proceduralCloud() {
+	let unit = width/12;
+	noStroke();
+    	fill("#FFF");
+
+	// Bottom of the cloud
+	ellipse(unit, height-unit, 2*unit, 2*unit);
+	ellipse(width-unit, height-unit, 2*unit, 2*unit);
+	rect(unit, height-2*unit, width-2*unit, 2*unit);
+
+	// Safe zone = middle of the cloud
+	rect(2*unit, 2*unit, width-4*unit, height-2*unit, unit);
+
+	// Procedural shape
+	for (var i = 0; i < 42; i++) {
+		var x, y, size;
+		if (random() > 0.5) {
+			x = random(2*unit, width-2*unit);
+			y = (random() > 0.5) ? random(2*unit, 3*unit) : random(height-3*unit, height-2*unit);
+		}
+		else {
+			x = (random() > 0.5) ? random(2*unit, 3*unit) : random(width-3*unit, width-2*unit);
+			y = random(height-2*unit, 2*unit);
+		}
+		var size = random(unit, 4*unit);
+		ellipse(x, y, size, size);
+	}
+	
+	return [2*unit, 2*unit, width-4*unit, height-2*unit];
+}
+
+register(proceduralCloud, "Procedural Cloud", "Tom Février");
